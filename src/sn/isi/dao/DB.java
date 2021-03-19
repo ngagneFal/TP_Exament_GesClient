@@ -11,7 +11,7 @@ public class DB {
     private ResultSet rs;
 
     public void open() {
-        String url = "jdbc:mysql://localhost:3306/tpjdbc";
+        String url = "jdbc:mysql://localhost:3306/Marketeur";
         String mysqluser ="root";
         String mysqlpassword="Ngagne.03";
         try {

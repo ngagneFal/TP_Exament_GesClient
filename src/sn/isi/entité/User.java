@@ -7,22 +7,22 @@ public class User implements Serializable {
     private String nom;
     private String prenom;
     private String email;
-    private String password;
+    private String tel;
 
     // constructeurs
 
-    public User(int id, String nom, String prenom, String email, String password) {
+
+    public User(int id, String nom, String prenom, String email, String tel) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
-        this.password = password;
+        this.tel = tel;
     }
 
     public User() {
 
     }
-
 
     // getters ansd setters
 
@@ -59,11 +59,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getTel() {
+        return tel;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 }

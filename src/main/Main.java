@@ -1,85 +1,67 @@
 package main;
 
 import sn.isi.dao.*;
-import sn.isi.entité.Produit;
 import sn.isi.entité.User;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 public  static void main (String [] args) throws Exception {
-   DB db = new DB();
-  //AJOUT utilisateur
-   /* db.open();
-    String sql ="INSERT INTO user VALUES(NULL,?,?,?,?)";
-    db.init(sql);
-    db.getPstm().setString(1,"Diallo");
-    db.getPstm().setString(2,"Diallo");
-    db.getPstm().setString(3,"Diallo123");
-    db.getPstm().setString(4,"Alioune");
-    int ok = db.executeUpdate();
-    System.out.println(ok);*/
-
-    System.out.println("*********************Delete - Utilisateur***************************");
-
-    db.open();
-    /* String sql ="DELETE FROM user WHERE id=?";
-    db.init(sql);
-    db.getPstm().setInt(1,1);
-    ok = db.executeUpdate();*/
 
 
-    System.out.println("*********************Update - Utilisateur***************************");
-    /*IUser userdao = new UserImp();
-    User user= new User();
-    user.setId(1);
-    user.setNom("Assane");  
-    user.setPrenom("Fall");
-    user.setEmail("Ngagne3");
-    user.setPassword("Ngagne@gm");
-    int ok= userdao.update(user);*/
-   // System.out.println(ok);
+ DB db = new DB();
+        int menuAccueil = 4;
+      Scanner scan = new Scanner(System.in);
+      System.out.print(": ---------1 CRÉATION  ---------------\n,");
+      System.out.print(":----------2 ÉDITION ------------------ \n,:");
+      System.out.print(":----------3 VISUALISATIOION ----------\n,:");
+      System.out.print(":----------4 RECHERCHE   --------------\n,:");
 
-    System.out.println("*********************Lister - UTILSATEUR***************************");
-    /*IUser userdao = new UserImp();
-    List<User> users =userdao.getAll();
-    for (User u : users){
-        System.out.println("id :"+u.getId() +", nom : "+u.getNom()+", prenom : "+u.getPrenom()+", email : "+u.getEmail());
-    }*/
+      menuAccueil  = Integer.parseInt(scan.nextLine());
+      switch (menuAccueil)
+      {
+       case 1:
+        IUser userdao = new UserImp();
+        User user= new User();
+        userdao.add(user);
+        System.out.print(":---------- Informations CLIENT  --------------\n,:");
+        System.out.println(" Le prénom du client  : "+user.getPrenom());
+        System.out.println(" Le nom est du client  : "+user.getNom());
+        System.out.println(" l'adresse email du client  : "+user.getEmail());
+        System.out.println(" le téléphone du client  : "+user.getTel());
+        break;
 
+        case 2 :
+        User user21= new User();
+        System.out.print("entrer l'email du client que tu veux modifiier : ");
+        user21.setEmail(scan.nextLine());
+        IUser userdao12 = new UserImp();
+        userdao12.update(user21, user21.getEmail());
+        List<User> userss =userdao12.getAll();
+        for (User u1 : userss){
 
-    System.out.println("*********************PRODUIT***************************");
+            System.out.println("nom : "+u1.getNom()+" prenom : "+u1.getPrenom()+" Email : "+u1.getEmail()+" Téléphone : "+u1.getTel());
+        }
+        break;
 
-    System.out.println("*********************AJOUT - PRODUIT***************************");
-   /* Produit produit = new Produit();
-    db.open();
-    String sql ="INSERT INTO produits VALUES(NULL,?,?,?)";
-    db.init(sql);
+        case 3 :
+        IUser userdao1 = new UserImp();
+         List<User> users =userdao1.getAll();
+         for (User u1 : users){
+          System.out.println(" nom : "+u1.getNom()+" / prenom : "+u1.getPrenom()+" Tel  / : "+u1.getTel()+" email /: "+u1.getEmail());
+         }
+        break;
 
-    db.getPstm().setString(1,"lait");
-    db.getPstm().setString(2,"gloria");
-    db.getPstm().setInt(3,12233);
-    int ok = db.executeUpdate();*/
-    /*
-    System.out.println("*********************Delete - PRODUIT***************************");
-    db.open();
-    String  sql ="DELETE FROM produits WHERE id=?";
-    db.init(sql);
-    db.getPstm().setInt(1,2);
-    int ok = db.executeUpdate();
-*/
-    System.out.println("*********************UPDATE - PRODUIT***************************");
-    /*IProduit userdao1 = new ProduitImp();
-    Produit produit = new Produit();
-    produit.setId(3);
-    produit.setRef("riz");
-    int ok= userdao1.update(produit);*/
+        case 4:
+        User user23= new User();
+        IUser user32 = new UserImp();
+        user32.equals(user23.getEmail());
+        break;
+              default:
+                  System.out.print("Choix non disponible ");
 
-   /* IProduit userdao = new ProduitImp();
-    List<Produit> produits = userdao.getAll();
-    for (Produit u : produits){
-        System.out.println("id :"+u.getId() +", referent : "+u.getRef()+", nom : "+u.getNom());
-    }*/
-}
+              }
+
+      }
+
 }
