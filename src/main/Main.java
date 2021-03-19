@@ -11,6 +11,7 @@ public  static void main (String [] args) throws Exception {
 
  DB db = new DB();
         int menuAccueil = 4;
+        String rep = null;
       Scanner scan = new Scanner(System.in);
       System.out.print(": ---------1 CRÉATION  ---------------\n,");
       System.out.print(":----------2 ÉDITION ------------------ \n,:");
@@ -21,14 +22,20 @@ public  static void main (String [] args) throws Exception {
       switch (menuAccueil)
       {
        case 1:
-        IUser userdao = new UserImp();
-        User user= new User();
-        userdao.add(user);
-        System.out.print(":---------- Informations CLIENT  --------------\n,:");
-        System.out.println(" Le prénom du client  : "+user.getPrenom());
-        System.out.println(" Le nom est du client  : "+user.getNom());
-        System.out.println(" l'adresse email du client  : "+user.getEmail());
-        System.out.println(" le téléphone du client  : "+user.getTel());
+           do {
+
+               IUser userdao = new UserImp();
+               User user= new User();
+               userdao.add(user);
+               System.out.print(":---------- Informations CLIENT  --------------\n,:");
+               System.out.println(" Le prénom du client  : "+user.getPrenom());
+               System.out.println(" Le nom est du client  : "+user.getNom());
+               System.out.println(" l'adresse email du client  : "+user.getEmail());
+               System.out.println(" le téléphone du client  : "+user.getTel());
+               System.out.println(" voulez vous saisir");
+               rep=scan.nextLine();
+
+           }while(rep.equalsIgnoreCase("oui"));
         break;
 
         case 2 :
