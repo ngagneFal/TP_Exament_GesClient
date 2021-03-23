@@ -1,7 +1,7 @@
 package main;
 
 import sn.isi.dao.*;
-import sn.isi.entité.User;
+import sn.isi.entité.Client;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,64 +10,75 @@ public  static void main (String [] args) throws Exception {
 
 
  DB db = new DB();
-        int menuAccueil = 4;
+
+    Scanner scan = new Scanner(System.in);
+    int menuChoice;
+    String mainMenu = ("Select un choix : \n"
+            + "1. Creation client\n"
+            + "2. Edition \n"
+            + "3. Visualisation\n"
+            + "4. Recherche\n"
+            + "5. Exit");
+
+    do {
         String rep = null;
-      Scanner scan = new Scanner(System.in);
-      System.out.print(": ---------1 CRÉATION  ---------------\n,");
-      System.out.print(":----------2 ÉDITION ------------------ \n,:");
-      System.out.print(":----------3 VISUALISATIOION ----------\n,:");
-      System.out.print(":----------4 RECHERCHE   --------------\n,:");
+        System.out.println(mainMenu);
+        menuChoice = scan.nextInt();
 
-      menuAccueil  = Integer.parseInt(scan.nextLine());
-      switch (menuAccueil)
-      {
-       case 1:
-           do {
 
-               IUser userdao = new UserImp();
-               User user= new User();
-               userdao.add(user);
-               System.out.print(":---------- Informations CLIENT  --------------\n,:");
-               System.out.println(" Le prénom du client  : "+user.getPrenom());
-               System.out.println(" Le nom est du client  : "+user.getNom());
-               System.out.println(" l'adresse email du client  : "+user.getEmail());
-               System.out.println(" le téléphone du client  : "+user.getTel());
-               System.out.println(" voulez vous saisir");
-               rep=scan.nextLine();
+        switch (menuChoice)
+        {
+            case 1:
 
-           }while(rep.equalsIgnoreCase("oui"));
-        break;
 
-        case 2 :
-        User user21= new User();
-        System.out.print("entrer l'email du client que tu veux modifiier : ");
-        user21.setEmail(scan.nextLine());
-        IUser userdao12 = new UserImp();
-        userdao12.update(user21, user21.getEmail());
-        List<User> userss =userdao12.getAll();
-        for (User u1 : userss){
+                    IClient userdao = new ClientImp();
+                    Client client = new Client();
+                    userdao.add(client);
+                    System.out.print(":---------- Informations CLIENT  --------------\n,:");
+                    System.out.println(" Le prénom du client  : "+ client.getPrenom());
+                    System.out.println(" Le nom est du client  : "+ client.getNom());
+                    System.out.println(" l'adresse email du client  : "+ client.getEmail());
+                    System.out.println(" le téléphone du client  : "+ client.getTel());
 
-            System.out.println("nom : "+u1.getNom()+" prenom : "+u1.getPrenom()+" Email : "+u1.getEmail()+" Téléphone : "+u1.getTel());
+
+                break;
+
+            case 2 :
+                Client client21 = new Client();
+                IClient userdao12 = new ClientImp();
+                userdao12.update(client21, client21.getEmail());
+                List<Client> users =userdao12.getAll();
+                for (Client u : users) {
+                    if (u.getEmail().equals(client21.getEmail())) {
+                        System.out.println(" nom : " + u.getNom() + "\n prenom : " + u.getPrenom() + " \n email : " + u.getEmail());
+                    }
+                }
+                List<Client> userss =userdao12.getAll();
+                for (Client u1 : userss){
+                    System.out.println("nom : "+u1.getNom()+" prenom : "+u1.getPrenom()+" Email : "+u1.getEmail()+" Téléphone : "+u1.getTel());
+                }
+                break;
+
+            case 3 :
+                IClient userdao1 = new ClientImp();
+                List<Client> clients =userdao1.getAll();
+                for (Client u1 : clients){
+                    System.out.println(" nom : "+u1.getNom()+"  prenom : "+u1.getPrenom()+" Tel   : "+u1.getTel()+" email : "+u1.getEmail());
+                }
+                break;
+
+            case 4:
+                Client client23 = new Client();
+                IClient user32 = new ClientImp();
+                user32.equals(client23.getEmail());
+                break;
+            default:
+                System.out.print("Choix non disponible ");
+
         }
-        break;
 
-        case 3 :
-        IUser userdao1 = new UserImp();
-         List<User> users =userdao1.getAll();
-         for (User u1 : users){
-          System.out.println(" nom : "+u1.getNom()+" / prenom : "+u1.getPrenom()+" Tel  / : "+u1.getTel()+" email /: "+u1.getEmail());
-         }
-        break;
 
-        case 4:
-        User user23= new User();
-        IUser user32 = new UserImp();
-        user32.equals(user23.getEmail());
-        break;
-              default:
-                  System.out.print("Choix non disponible ");
-
-              }
+    } while (menuChoice != 5);
 
       }
 

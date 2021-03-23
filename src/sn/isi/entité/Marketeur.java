@@ -2,17 +2,15 @@ package sn.isi.entité;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class Marketeur implements Serializable  {
     private int id;
     private String nom;
     private String prenom;
     private String email;
     private String tel;
+    //constructor
 
-    // constructeurs
-
-
-    public User(int id, String nom, String prenom, String email, String tel) {
+    public Marketeur(int id, String nom, String prenom, String email, String tel) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -20,11 +18,11 @@ public class User implements Serializable {
         this.tel = tel;
     }
 
-    public User() {
-
+    public Marketeur() {
+        super();
     }
 
-    // getters ansd setters
+    //getters and setters
 
 
     public int getId() {
@@ -67,3 +65,5 @@ public class User implements Serializable {
         this.tel = tel;
     }
 }
+
+
